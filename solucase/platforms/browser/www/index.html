@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+
+
+</head>
+
+<body>
+
+    <!--  page 1 ___________________________________-->
+    <div data-role="page" id="demo-page" data-theme="a" data-url="demo-page">
+        <div id="header1" class="ui-bar ui-bar-b">
+            <a href="#left-panel" id="btn-style" class=" ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-b ui-btn-inline ui-btn-icon-left ui-btn-icon-notext "></a>
+        </div>
+        <div data-role="content">
+
+            <div class="example-wrapper" data-iscroll>
+                <ul data-role="listview" class="recentposts" data-inset="true">
+<!--**************************spiner*****************-->
+                    <div class="spiner"></div>
+<!--**************************spiner*****************-->
+
+                </ul>
+            </div>
+        </div>
+
+        <div data-role='foter'>
+        </div>
+
+        <div data-role="panel" id="left-panel" data-theme="a" data-dialog="true">
+            <p class="cathe">Category</p>
+            <ul data-role="listview" data-rel="close" id="categories"></ul>
+
+        </div>
+    </div>
+
+
+
+    <!--la page 2 pour aficher le contenu-->
+    <div data-role="page" id="postview" data-theme="a" data-url="demo-page">
+
+        <div data-role="header" id="headerp1" data-theme="a">
+            <a href="#demo-page" data-theme="a" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
+        </div>
+
+        <div data-role="content">
+
+            <div class="example-wrapper" data-iscroll>
+                <ul data-role="listview" id="detail" data-inset="true"></ul>
+
+
+            </div>
+        </div>
+
+        <div data-role='foter'> </div>
+
+
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+
+    </script>
+    <script type="text/javascript">
+        /*apple les post recent*/
+        var i = 3;
+            $(document).ready(function() {
+
+
+
+            /*----------------------spiner active--------------*/
+            $(document).ajaxStart(function(){
+    $('.spiner').show();
+ }).ajaxStop(function(){
+    $('.spiner').hide();
+ });
+            /*----------------------spiner active--------------*/
+
+            load_data();
+
+            $(window).scroll(function() {
+
+                 console.log('window hight : '+$(window).height());
+                 console.log('window width : '+$(window).width());
+
+
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+
+
+
+                }
+            });
+
+        })
+
+     /*****************load recent post *********************/
+        function load_data() {
+    $.ajax({
+                       method: 'GET',
+    dataType: 'json',
+                success: 'success',
+                //url: "http://svcmaroc.com/test1/api/get_recent_posts/?count=" + nbr + "/",
+                url: "http://solucase.com/wp-json/wp/v2/posts",
+
+            }).then(function(posts) {
+                var output = '';
+                $.each(posts, function(key, val) {
+
+
+                    $('.recentposts').append('<div  class="post"  data-icon="false" onclick=postDetails(' + val.id + ')><a   href="#postview"><img  class="post_recent_img"    alt="Cinque Terre" src= + val.thumbnail + ></img></a><h1 class="post_h1">' + val.title.rendered + '</h1><div class="para"><p  + val.content.substring(5, 450) + </p></div></div>');
+  $('.recentposts').listview('refresh');
+                })
+
+
+$('.recentposts .post').fadeIn(1000);
+
+
+            })
+
+        }
+
+
+
+
+
+
+
+
+
+        /*afficher le contenu de chaque post*/
+
+        function postDetails(x) {
+            $.ajax({
+                method: 'GET',
+                dataType: 'json',
+                success: 'success',
+                url: "http://svcmaroc.com/test1/api/get_recent_posts/",
+            }).then(function(data) {
+                var o = '';
+                $.each(data.posts, function(key, val) {
+                    if (val.id == x) {
+                        o += '<div   class="post"  data-icon="false"><img  class="post_recent_img"   alt="Cinque Terre" src=' + val.thumbnail + '></img><h1 class="post_h1">' + val.slug + '</h1><div class="para"><p ' + val.content + '</p></div></div>';
+
+                    }
+                    $('#detail').html(o);
+
+                    $('#detail').listview('refresh');
+                });
+            })
+        }
+
+
+
+
+        /*apple les  cathegorie*/
+        $(document).ready(function() {
+
+            $.ajax({
+                method: 'GET',
+                dataType: 'json',
+                success: 'success',
+                url: "http://svcmaroc.com/test1/api/get_category_index/",
+            }).then(function(data) {
+                var output = '';
+
+                $.each(data.categories, function(key, val) {
+
+                    output += '<li   onclick=posts(' + val.id + ') ><a  href="#detailP">' + val.title + '</a></li>';
+                    //
+                    $('#categories').html(output);
+                    $('#categories').listview('refresh');
+                });
+            })
+        })
+
+
+
+        /*apple les  post par cath*/
+
+        function posts(x) {
+            $.ajax({
+                method: 'GET',
+                dataType: 'json',
+                success: 'success',
+                url: "http://svcmaroc.com/test1/api/get_recent_posts/",
+            }).then(function(data) {
+                var o = '';
+                $.each(data.posts, function(key, val) {
+                    if (val.id == x) {
+                        o += '<div   class="post"  data-icon="false" onclick=postDetails(' + val.id + ')><img class="post_recent_img"   alt="Cinque Terre" src=' + val.thumbnail + '></img><h1 class="post_h1">' + val.slug + '</h1><div class="para"><p ' + val.content.substring(5, 450) + '</p></div></div>';
+                    };
+                    $('#recentposts').html(o);
+
+                    $('#recentposts').listview('refresh');
+                });
+            })
+        }
+
+
+
+
+
+
+
+    </script>
+</body>
+
+<style type="text/css">
+    @font-face {
+        font-family: "Belgrano";
+        src: url("css\fonts\Belgrano-Regular.ttf");
+        /* Make sure you defined the correct path, which is related to
+            the location of your file `my_css.css` */
+    }
+
+/*-----------------spiner-------------------*/
+.spiner {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+    background-image:url('css/spiner.gif');
+display: none;
+
+}
+/*-----------------spiner-------------------*/
+
+    .recentposts .post {
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+        margin-top: 20px;
+        height: 200px;
+        overflow: hidden;
+        display: none;
+    }
+
+    .recentposts .post img {
+        float: left;
+        margin-left: 5px;
+        margin-right: 10px;
+        margin-top: 20px;
+        border-radius: 50%;
+    }
+
+    .recentposts .post .para {
+        color: rgb(138, 138, 138);
+        text-align: left;
+        margin-right: 5px;
+        text-transform: lowercase;
+        letter-spacing: 2;
+        line-height: 1.2;
+        height: 70 px;
+        overflow: hidden;
+    }
+
+
+    .recentposts .post h1 {
+        color: rgb(0, 0, 0);
+        font-family: Belgrano;
+        font-size: 20px;
+        margin-top: 12px;
+        margin-right: 20px;
+        text-shadow: 3px 2px 10px rgb(138, 137, 137);
+        font-weight: bold;
+        overflow: hidden;
+
+    }
+
+    /*   for  page 2*/
+
+    #detail .post h1 {
+        color: rgb(2, 2, 2);
+        font-family: Belgrano;
+        font-size: 20px;
+        margin-top: 12px;
+        margin-right: 20px;
+        text-shadow: 3px 2px 10px rgb(138, 137, 137);
+        font-weight: bold;
+        overflow: hidden;
+
+    }
+
+    #detail .post .para {
+        color: rgb(138, 138, 138);
+        margin-right: 5px;
+        text-transform: lowercase;
+        letter-spacing: 2;
+        line-height: 1.2;
+        height: 70 px;
+        /*  border: 5px,5px,5px,5px;*/
+        border-right: 10px;
+        border-left: 10px;
+    }
+
+    #detail .post img {
+        float: left;
+        margin-left: 5px;
+        margin-right: 10px;
+        margin-top: 20px;
+    }
+
+    /* header_1*/
+
+    #btn-style {
+        margin-left: 0px;
+        POSITION: RELATIVE;
+        RIGHT: 20px;
+
+    }
+
+    #header1 {
+        height: 80px;
+        background-image: url("https://t3.ftcdn.net/jpg/00/81/10/58/240_F_81105881_pmBwtzXqFmtFx6rfhujAqTnhpWZf8fXn.jpg");
+        border-style: none;
+    }
+
+    /*panel */
+
+    .cathe {
+        font-family: Belgrano;
+        text-align: center;
+        text-shadow: 3px 2px 10px rgb(138, 137, 137);
+        font-weight: bold;
+        margin-bottom: 50px;
+        font-size: 30px;
+
+    }
+
+    #categories li a {
+        color: rgb(128, 128, 128);
+        font-family: Belgrano;
+        font-size: 20px;
+        height: 40px;
+        text-decoration: none;
+        text-transform: lowercase;
+    }
+
+</style>
