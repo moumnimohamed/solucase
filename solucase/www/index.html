@@ -27,27 +27,32 @@
 
 
       <a  href="#left-panel" id="btn-style"  class="fas fa-bars fa-lg"></a>
-      <a  href="#popupMenu"  data-rel="popup" data-transition="flow"   class="fas  fa-ellipsis-v fa-lg"></a>
-      <a  href="#left-panel"   class="fas fa-search fa-lg"></a>
+      <a  href="#popupMenu"  data-rel="popup" data-transition="flip"   class="fas  fa-ellipsis-v fa-lg"></a>
+      <a  href="#searsh_page" onclick=loadsershedpost()  class="fas fa-search fa-lg"></a>
+      <h1></h1>
 
 </div>
     <!-- TODO: panel page1 -->
     <div data-role="panel"  data-display="overlay" id="left-panel" data-theme="a"  data-dialog="true">
       <h1 class="cathe">Category</h1>
-      <ul data-role="listview"   id="categories">
-      
+      <ul data-role="listview"    id="categories">
+
       </ul>
     </div>
     <!-- TODO: popup menu page 1 -->
     <div data-role="popup" id="popupMenu"  data-theme="a">
-  <i class="fas fa-cogs"></i>
-      <a  href="#settingPage" id="btn-style"  >Réglage</a>
+
+                  <!--a href="#contact_page"><i style=" margin-right: 20px" class="fas fa-envelope"></i>Nous contacter</a-->
+
+                  <a href="#Quisommesnous_page"><i style=" margin-right: 15px"  class="fas fa-users"></i>Qui sommes nous</a>     
+      <hr >
+          
     </div>
 
     <div data-role="content">
 
       <div class="example-wrapper" data-iscroll>
-        <ul data-role="listview" class="recentposts" data-inset="true">
+        <ul data-role="listview"   class="recentposts" data-inset="true">
           <!-- TODO:spiner-->
           <div class="spiner"></div>
           <!--**************************spiner*****************-->
@@ -60,7 +65,7 @@
 
 
   <!-- TODO:start  page 2 -->
-  <div data-role="page" id="page2" data-theme="a" data-url="demo-page">
+  <div data-role="page" id="page2" data-theme="a">
 
     <div  id="headerP2" data-theme="none">
       <a  href="#demo-page"   class="fas fa-long-arrow-alt-left fa-lg"></a>
@@ -68,7 +73,7 @@
       <a  href="#left-panel"   class="fas fa-download fa-lg"></a>
     </div>
 
-    <div data-role="content" ">
+    <div data-role="content">
       <div class="example-wrapper" data-iscroll >
         <ul data-role="listview" class="detail" >
           <div class="spiner"></div>
@@ -82,7 +87,48 @@
 
   </div>
 
+  <!-- TODO:start  page 2 -->
+  <div data-role="page" id="searsh_page" data-theme="a">
 
+    <div  id="header_searsh" data-theme="none">
+      <a  href="#demo-page"   class="fas fa-long-arrow-alt-left fa-lg"></a>
+    </div>
+    <div data-role="content">
+      <div class="example-wrapper" data-iscroll >
+        <ul data-role="listview" class="serchedposts" data-filter="true" data-filter-placeholder="Chercher..." >
+        </ul>
+      </div>
+
+    </div>
+
+    <div data-role='foter'> </div>
+
+
+  </div>
+  <!-- TODO:contact page
+  <div data-role="page" id="contact_page" data-theme="a" >
+
+    <div  id="header_contact" data-theme="none">
+      <a  href="#demo-page" class="fas fa-long-arrow-alt-left fa-lg"></a>
+      <h1 >Contact SOLUCASE</h1>
+      <a href="#" >send</a>
+
+    </div>
+
+    <div data-role="content">
+        <h2>de</h2>
+          <input type="text" name="text-1" id="name" value="" placeholder="Nom / Prénom">
+             <input type="text" name="company" id="name" value="" placeholder="Société">
+               <input type="email" data-clear-btn="false" name="email-1" id="email" value="" placeholder="Email">
+             <h2>Message</h2>
+             <textarea name="textarea-1" id="textarea"></textarea>
+    </div>
+
+    <div data-role='foter'> </div>
+
+
+  </div>
+-->
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>

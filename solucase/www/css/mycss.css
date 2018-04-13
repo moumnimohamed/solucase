@@ -23,7 +23,7 @@
   }
 
   /* TODO: page 1 post css */
-  page1  backround coloro
+
 #page1 .ui-mobile .ui-page-active {
       display: block;
       overflow: visible;
@@ -47,7 +47,16 @@
     background-color:#002960;
     border-style: none;
   }
-#page1 #header1  a{
+
+  #page1  #header1 h1 {
+     color:white;
+    margin: 15px 1px 1px 10px;
+  padding: 4px;
+  font-family: OpenSans,sans-serif;
+text-transform: capitalize;
+font-size: 15px;
+    }
+#page1 #header1  a {
   float: left;
    text-decoration:none!important;
        text-shadow : none!important;
@@ -57,6 +66,9 @@
   margin: 15px 1px 1px 1px;
 padding: 4px;
  }
+
+
+
 #page1 #header1  a:not(:first-child) {
    margin-left: 23px;
     float: right;
@@ -64,6 +76,7 @@ padding: 4px;
   }
 
   /* TODO: body page 1 */
+  .serchedposts .post2,
   .recentposts .post {
     width: 100%;
     background-color: white;
@@ -73,6 +86,7 @@ padding: 4px;
     display: none;
 
   }
+  .serchedposts .post2 img,
 
   .recentposts .post img {
     float: right;
@@ -80,6 +94,7 @@ padding: 4px;
       width: 35%;
   }
 
+  .serchedposts .post2 .para,
   .recentposts .post .para {
     color: rgb(138, 138, 138);
     text-align: left;
@@ -92,10 +107,10 @@ padding: 4px;
   }
 
 
-
+  .serchedposts .post2 h1,
   .recentposts .post h1 {
 
-    font-family:OpenSans;
+    font-family:OpenSans,sans-serif;
       font-size: large;
     font-weight: bold;
      text-transform: capitalize;
@@ -106,14 +121,18 @@ padding: 4px;
   /* TODO: popupMenu css  */
 #popupMenu {
   padding : 13px;
+  border: 0px;
+  line-height: 0px;
 }
-  #popupMenu a,i{
-
+  #popupMenu  a{
     text-decoration: none;
-  color: #002960;
-  font-family: OpenSans;
-  font-size: 20px;
-  text-transform: capitalize;
+    color: #002960;
+    border-radius: 0px;
+    font-family: OpenSans,sans-serif;
+    text-transform: capitalize;
+    display: inherit;
+    font-size: 20px;
+        margin: 18px 0 0 0;
 }
 
   /* TODO:  panel page 1*/
@@ -123,7 +142,8 @@ padding: 4px;
   padding: 0 0 0 0;
 }
   #left-panel h1 {
-    font-family: OpenSans-Bold;
+    font-family: OpenSans-Bold,sans-serif;
+    text-transform:capitalize;
     color: white;
   padding:  16px;
   background-color: #002960 ;
@@ -135,9 +155,9 @@ padding: 4px;
   }
   #categories > div {
     color: rgb(128, 128, 128);
-    font-family: OpenSans-Bold;
+    font-family: OpenSans-Bold,sans-serif;
     text-transform: capitalize;
-    font-size:25px;
+    font-size:20px;
         padding: 10px 0 10px 30px;
   }
   #categories > div > a {
@@ -147,17 +167,25 @@ padding: 4px;
 }
 /* TODO: header  page 2 */
 
+
+
+
 #page2  .ui-content .ui-listview{
 
     margin: -8px;
-   background-color: white;
-  }
 
+  }
+/*#contact_page #header_contact,*/
+#searsh_page #header_searsh,
 #page2 #headerP2 {
   height: 50px;
   background-color:#002960;
   border-style: none;
 }
+
+/*#contact_page #header_contact a,*/
+#searsh_page #header_searsh a,
+
 #page2 #headerP2  a{
 float: left;
  text-decoration:none!important;
@@ -175,16 +203,18 @@ padding: 4px;
 }
  /* TODO: page 2 content */
 
-#page2   {
- }
+
  #page2 > div img {
    width: 100%;
    height: 100%;
   }
+.detail .post_afficher {
+  display: none;
 
+}
    /*h1 h2 h4 p*/
    #page2 > div h1 {
-     font-family: OpenSans;
+     font-family: OpenSans,sans-serif;
      font-size: xx-large;
      font-weight: bold;
      text-transform: capitalize;
@@ -193,7 +223,7 @@ padding: 4px;
      margin: 18px 5px 0px 5px;
     }
     #page2 > div h2 {
-      font-family: OpenSans;
+      font-family: OpenSans,sans-serif;
       font-size: x-large;
       font-weight: bold;
       text-transform: capitalize;
@@ -202,7 +232,7 @@ padding: 4px;
       margin: 18px 5px 0px 5px;
      }
      #page2 > div h4 {
-       font-family: OpenSans;
+       font-family: OpenSans,sans-serif;
        font-size:large;
        font-weight: bold;
        text-transform: capitalize;
@@ -210,7 +240,7 @@ padding: 4px;
        margin: 18px 5px 0px 5px;
       }
     #page2 > div p {
-      font-family: OpenSans;
+      font-family: OpenSans,sans-serif;
   text-transform: capitalize;
   color: black;
   line-height: 25px;
@@ -218,3 +248,36 @@ padding: 4px;
   margin: 18px 5px 0px 5px;
   font-size: large;
      }
+
+     /* TODO: contact page
+     #contact_page #header_contact h1 {
+       color: white;
+     margin: 10px 1px 1px 100px;
+     padding: 4px;
+     font-family: OpenSans;
+     text-transform: capitalize;
+     font-size: 15px;
+     position: absolute;
+       }
+       #contact_page  h2 {
+       font-family: OpenSans;
+       text-transform: capitalize;
+       font-size: 15px;
+       color: #002960;
+       margin: 0px;
+         }
+
+       #contact_page #header_contact a:last-child {
+         float: right;
+margin: 10px 10px 1px 100px;
+padding: 4px;
+font-family: OpenSans;
+text-transform: capitalize;
+font-size: 15px;
+       }
+
+       #contact_page  input ,textarea{
+         font-size: 15px;
+              font-family: opensans;
+
+            }
