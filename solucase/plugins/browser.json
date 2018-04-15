@@ -36,6 +36,15 @@
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.moumni.firstapp"
+    },
+    "cordova-pdf-generator": {
+      "PACKAGE_NAME": "com.moumni.firstapp"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.solucase.soluc"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.solucase.soluc"
     }
   },
   "dependent_plugins": {
@@ -44,6 +53,9 @@
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.moumni.firstapp"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.solucase.soluc"
     }
   }
 }

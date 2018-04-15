@@ -1,11 +1,12 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "product_post_app",
-  "short_name": "product_post_app",
-  "version": "com.moumni.firstapp",
-  "description": "Hello World sample application that responds to the deviceready event.",
+  "name": "solucase",
+  "short_name": "solucase",
+  "version": "com.solucase.soluc",
+  "description": "Hello World sample application that receive blog from a web site.",
   "author": "PhoneGap Team",
   "icons": [],
+  "orientation": "any",
   "start_url": "index.html"
 }

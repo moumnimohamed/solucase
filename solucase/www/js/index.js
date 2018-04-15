@@ -1,25 +1,34 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady () {
 
+  $(document).ajaxStart(function() {
+    $('.spiner').show();
+  }).ajaxStop(function() {
+    $('.spiner').hide();
+  });
+  /* TODO:active spiner in load*/
+  loadData();
+  getcategories () ;
+
 }
 
-  $(document).ready(function() {
+/*  $(document).ready(function() {
+ /*$(window).scroll(function() {
+      if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+      }
+    });
+    console.log('document ready');
     $(document).ajaxStart(function() {
       $('.spiner').show();
     }).ajaxStop(function() {
       $('.spiner').hide();
     });
-    /* TODO:active spiner in load*/
+    /* TODO:active spiner in load
     loadData();
-
     getcategories () ;
+  });*/
 
 
-  /*  $(window).scroll(function() {
-      if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-      }
-    });*/
-  });
   // TODO: function that load all posts
   function loadData() {
 
@@ -81,6 +90,7 @@ $('.serchedposts .post2').fadeIn(1000);
 
 
   // TODO: display contents for evry post
+  var linkToShare;
   function postDetails (post_id) {
     $('.detail .post_afficher').remove();
     location.href="#page2";
@@ -92,6 +102,7 @@ $('.serchedposts .post2').fadeIn(1000);
       url: 'http://solucase.com/wp-json/wp/v2/posts/'+post_id+'/?_embed',
     }).then(function(post) {
     //  console.log("1 :"+post.title.rendered);
+    linkToShare=post.link;
       $('.detail').append('<div class="post_afficher" ><img src='+post._embedded['wp:featuredmedia']['0'].source_url+' ></img><h1 class="post_h1">'+post.title.rendered +'</h1>'+post.content.rendered+'</div>');
   $('.detail .post_afficher').fadeIn(1000);
     })
@@ -146,3 +157,28 @@ $('.serchedposts .post2').fadeIn(1000);
 
     })
   }
+// TODO: function that allow  gavePDF
+function gavePDF (){
+
+      var htmlString = $(".post_afficher").html();
+
+  let options = {
+                documentSize: 'A4',
+                type: 'share',
+                fileName: 'myFile.pdf',
+              }
+
+pdf.fromData(htmlString, options)
+    .then((stats)=> console.log('status', stats) )   // ok..., ok if it was able to handle the file to the OS.
+    .catch((err)=>console.err(err))
+
+}
+// TODO: share in social media
+function sharePost () {
+  var image = $(".post_afficher").find('img:first').attr('src');
+  console.log(linkToShare);
+  window.plugins.socialsharing.share('',
+      'PhoneGap share plugin',
+      'image', // check the repo for other usages
+      'linkToShare')
+}

@@ -69,13 +69,14 @@
 
     <div  id="headerP2" data-theme="none">
       <a  href="#demo-page"   class="fas fa-long-arrow-alt-left fa-lg"></a>
-      <a  href="#left-panel"   class="fas fa-share-alt fa-lg"></a>
-      <a  href="#left-panel"   class="fas fa-download fa-lg"></a>
+      <a  onclick="sharePost()"   class="fas fa-share-alt fa-lg"></a>
+      <a  onclick="gavePDF()"   class="fas fa-download fa-lg"></a>
     </div>
 
     <div data-role="content">
       <div class="example-wrapper" data-iscroll >
         <ul data-role="listview" class="detail" >
+        
           <div class="spiner"></div>
         </ul>
       </div>
@@ -87,7 +88,7 @@
 
   </div>
 
-  <!-- TODO:start  page 2 -->
+  <!-- TODO:start  page3 -->
   <div data-role="page" id="searsh_page" data-theme="a">
 
     <div  id="header_searsh" data-theme="none">
@@ -133,6 +134,7 @@
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/SocialSharing.js"></script>
 
 
 </body>
