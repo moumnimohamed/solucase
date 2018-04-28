@@ -26,7 +26,7 @@ function onDeviceReady () {
     /* TODO:active spiner in load
     loadData();
     getcategories () ;
-  });*/
+  });
 
 
   // TODO: function that load all posts
